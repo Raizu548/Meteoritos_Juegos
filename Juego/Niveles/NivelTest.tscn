@@ -10,3 +10,5 @@ position = Vector2( 457, 215 )
 physics_material_override = ExtResource( 2 )
 gravity_scale = 0.0
 can_sleep = false
+linear_damp = 2.0
+angular_damp = 4.0
