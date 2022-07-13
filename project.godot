@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Proyectiles/Canion.gd"
 }, {
+"base": "Line2D",
+"class": "Estela",
+"language": "GDScript",
+"path": "res://Juego/Naves/Player/Estela/Trail2D.gd"
+}, {
+"base": "AudioStreamPlayer2D",
+"class": "Motor",
+"language": "GDScript",
+"path": "res://Juego/Naves/Player/Motor/MotorSFX.gd"
+}, {
 "base": "Node2D",
 "class": "Nivel",
 "language": "GDScript",
@@ -36,6 +46,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Canion": "",
+"Estela": "",
+"Motor": "",
 "Nivel": "",
 "Player": "",
 "Proyectil": "",
@@ -44,13 +56,24 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Meteoritos_Juegos"
+config/name="Meteoritos"
 run/main_scene="res://Juego/Niveles/NivelTest.tscn"
-config/icon="res://icon.png"
+config/icon="res://player_orange_logo.png"
 
 [autoload]
 
 Eventos="*res://Juego/Autoloads/Eventos.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/resizable=false
+window/size/always_on_top=true
+window/size/test_width=1280
+window/size/test_height=720
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [input]
 
@@ -90,6 +113,14 @@ disparo_secundario={
 , Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemigo"
+2d_physics/layer_3="meteorito"
+2d_physics/layer_4="proyectil_player"
+2d_physics/layer_5="proyectil_enemigo"
 
 [physics]
 
