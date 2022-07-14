@@ -8,6 +8,7 @@ enum ESTADO{SPAWN, VIVO, INVENCIBLE, MUERTO}
 export var potencia_motor: int = 20
 export var potencia_rotacion: int = 200
 export var estela_maxima: int = 150
+export var hitspoint: float = 15.0
 
 ## Atributos
 var empuje: Vector2 = Vector2.ZERO
@@ -20,6 +21,7 @@ onready var laser: RayoLaser = $LaserBeam2D
 onready var estela: Estela = $EstelaPuntoInicial/Trail2D
 onready var motor_sfx: Motor = $MotorSFX
 onready var colisionador: CollisionShape2D = $CollisionShape2D
+onready var impactoSFX: AudioStreamPlayer = $ImpactoSFX
 
 ## Metodos custom
 func controlador_estados(nuevo_estado: int) -> void:
@@ -47,8 +49,15 @@ func esta_input_activado() -> bool:
 		return false
 	return true
 
+func recibir_danio(danio: float) -> void:
+	impactoSFX.play()
+	hitspoint -= danio
+	if hitspoint <= 0:
+		destruir()
+
 func destruir() -> void:
 	controlador_estados(ESTADO.MUERTO)
+
 
 ## Metodos
 func _ready() -> void:
