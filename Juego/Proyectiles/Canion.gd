@@ -15,10 +15,14 @@ onready var esta_disparando: bool = false setget set_esta_disparando
 
 ## Atributos
 var puntos_disparo: Array = []
+var puede_disparar: bool = false setget set_puede_disparar
 
 ## Setters y Getters
 func set_esta_disparando(disparando: bool) -> void:
 	esta_disparando = disparando
+
+func set_puede_disparar(puede_d: bool) -> void:
+	puede_disparar = puede_d
 
 ## Metodos
 func _ready() -> void:
