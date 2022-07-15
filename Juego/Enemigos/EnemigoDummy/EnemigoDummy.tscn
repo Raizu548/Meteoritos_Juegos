@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://EnemigoDummy.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Juego/Enemigos/EnemigoDummy/AreaColision.gd" type="Script" id=3]
+[ext_resource path="res://Juego/Proyectiles/ProyectilEnemigo.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/Proyectiles/Canion.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 95.5, 96 )
@@ -16,9 +19,22 @@ texture = ExtResource( 2 )
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 13
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -1.5, 0 )
 shape = SubResource( 1 )
 
+[node name="Canion" parent="." instance=ExtResource( 5 )]
+proyectil = ExtResource( 4 )
+cadencia_disparo = 0.4
+
+[node name="PuntoIzquierdo" parent="Canion" index="0"]
+position = Vector2( 0, -25 )
+
+[node name="PuntoDerecho" parent="Canion" index="1"]
+position = Vector2( 0, 25 )
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+[editable path="Canion"]

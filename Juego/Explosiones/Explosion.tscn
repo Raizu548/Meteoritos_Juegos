@@ -345,3 +345,5 @@ anims/RESET = SubResource( 18 )
 
 [node name="ExplosionSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
+volume_db = 5.0
+bus = "SFX"

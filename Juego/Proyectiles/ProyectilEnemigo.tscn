@@ -5,7 +5,6 @@
 
 [node name="ProyectilEnemigo" instance=ExtResource( 1 )]
 z_index = 39
-z_as_relative = false
 collision_layer = 16
 collision_mask = 5
 

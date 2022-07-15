@@ -8,6 +8,7 @@ enum ESTADO{SPAWN, VIVO, INVENCIBLE, MUERTO}
 export var potencia_motor: int = 20
 export var potencia_rotacion: int = 200
 export var estela_maxima: int = 150
+export var hitspoint: float = 15.0
 
 ## Atributos
 var empuje: Vector2 = Vector2.ZERO
@@ -20,6 +21,8 @@ onready var laser: RayoLaser = $LaserBeam2D
 onready var estela: Estela = $EstelaPuntoInicial/Trail2D
 onready var motor_sfx: Motor = $MotorSFX
 onready var colisionador: CollisionShape2D = $CollisionShape2D
+onready var impactoSFX: AudioStreamPlayer = $ImpactoSFX
+onready var escudo: Escudo = $Escudo
 
 ## Metodos custom
 func controlador_estados(nuevo_estado: int) -> void:
@@ -47,8 +50,17 @@ func esta_input_activado() -> bool:
 		return false
 	return true
 
+func recibir_danio(danio: float) -> void:
+	impactoSFX.play()
+	hitspoint -= danio
+	if hitspoint <= 0:
+		destruir()
+
 func destruir() -> void:
 	controlador_estados(ESTADO.MUERTO)
+
+
+
 
 ## Metodos
 func _ready() -> void:
@@ -75,12 +87,16 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if (event.is_action_released("mover_adelante") or event.is_action_released("mover_atras")):
 		motor_sfx.sonido_off()
+	
+	# Control Escudo
+	if event.is_action_pressed("escudo") and not escudo.get_esta_activado():
+		escudo.activar()
 
-func _integrate_forces(state: Physics2DDirectBodyState) -> void:
+func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
 	apply_torque_impulse(dir_rotacion * potencia_rotacion)
 	apply_central_impulse(empuje.rotated(rotation))
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	player_input()
 	
 func player_input() -> void:
