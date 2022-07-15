@@ -15,7 +15,7 @@ export var growth_time := 0.1
 # It plays appearing and disappearing animations when it's not animating.
 # See `appear()` and `disappear()` for more information.
 var is_casting := false setget set_is_casting
-var radio_danio: float = 10.0
+var radio_danio: float = 15.0
 
 onready var fill := $FillLine2D
 onready var tween := $Tween

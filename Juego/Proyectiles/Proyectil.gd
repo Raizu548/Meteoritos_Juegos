@@ -7,7 +7,7 @@ var velocidad: Vector2 = Vector2.ZERO
 var danio: float = 2.0
 
 ## Constructor
-func crear(pos: Vector2, dir: float, vel: float, danio_p: int) -> void:
+func crear(pos: Vector2, dir: float, vel: float, _danio_p: int) -> void:
 	position = pos
 	rotation = dir
 	velocidad = Vector2(vel,0).rotated(dir)

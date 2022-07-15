@@ -70,6 +70,11 @@ config/icon="res://player_orange_logo.png"
 
 Eventos="*res://Juego/Autoloads/Eventos.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/width=1920
