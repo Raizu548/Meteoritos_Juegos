@@ -87,6 +87,9 @@ tracks/1/keys = {
 z_index = 50
 z_as_relative = false
 collision_mask = 22
+contacts_reported = 2
+contact_monitor = true
+can_sleep = false
 script = ExtResource( 2 )
 potencia_motor = 30
 
@@ -138,6 +141,7 @@ bus = "SFX"
 
 [node name="Escudo" parent="." instance=ExtResource( 8 )]
 
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="Canion"]
