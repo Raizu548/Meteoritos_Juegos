@@ -63,6 +63,16 @@ _global_script_classes=[ {
 "class": "RayoLaser",
 "language": "GDScript",
 "path": "res://Juego/Proyectiles/Laser/LaserBeam2D.gd"
+}, {
+"base": "Area2D",
+"class": "SectorDePeligro",
+"language": "GDScript",
+"path": "res://Juego/Peligros/SectorDePeligro.gd"
+}, {
+"base": "Node2D",
+"class": "SectorMeteoritos",
+"language": "GDScript",
+"path": "res://Juego/Meteoritos/SectorMeteoritos.gd"
 } ]
 _global_script_class_icons={
 "Canion": "",
@@ -75,7 +85,9 @@ _global_script_class_icons={
 "Nivel": "",
 "Player": "",
 "Proyectil": "",
-"RayoLaser": ""
+"RayoLaser": "",
+"SectorDePeligro": "",
+"SectorMeteoritos": ""
 }
 
 [application]

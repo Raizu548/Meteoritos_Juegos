@@ -5,6 +5,7 @@
 
 [node name="MotorSFX" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
+bus = "SFX"
 script = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]

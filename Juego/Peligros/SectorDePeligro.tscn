@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Juego/Peligros/SectorDePeligro.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="SectorDePeligro" type="Area2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+tipo_peligro = "vacio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 21.24, 12.8 )
+shape = SubResource( 1 )
+
+[node name="PositionCentroSector" type="Position2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

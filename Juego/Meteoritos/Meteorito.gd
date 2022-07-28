@@ -11,10 +11,14 @@ onready var animacion_meteorito: AnimationPlayer = $AnimationPlayer
 
 ## Atributos
 var hitpoints: float
+var esta_en_sector: bool = true setget set_esta_en_sector
+var pos_spawn_original: Vector2
+var vel_spawn_original: Vector2
 
 ## Constructor
 func crear(pos: Vector2, direccion: Vector2, tamanio: float):
 	position = pos
+	pos_spawn_original = pos
 	# Calcular Masa, tamaño de Sprite y de Colisionador
 	mass *= tamanio
 	$Sprite.scale = Vector2.ONE * tamanio
@@ -25,11 +29,16 @@ func crear(pos: Vector2, direccion: Vector2, tamanio: float):
 	$CollisionShape2D.shape = forma_colision
 	# Calcular velocidades
 	linear_velocity = (vel_lineal_base * direccion / tamanio) * generar_velocidad_aleatorio()
+	vel_spawn_original = linear_velocity
 	angular_velocity = (vel_ang_base / tamanio) * generar_velocidad_aleatorio()
 	# Calcular hitpoints
 	hitpoints = hitpoints_base * tamanio
-	# Solo debug
-	print("hitpoints: ", hitpoints)
+
+
+## Getter and Setter
+func set_esta_en_sector(valor: bool) -> void:
+	esta_en_sector = valor
+
 
 # Metodos personalizados
 func recibir_danio(danio: float) -> void:
@@ -51,3 +60,13 @@ func generar_velocidad_aleatorio() -> float:
 ## Metodos
 func _ready() -> void:
 	angular_velocity = vel_ang_base
+
+func _integrate_forces(state: Physics2DDirectBodyState) -> void:
+	if esta_en_sector:
+		return
+	
+	var mi_transform := state.get_transform()
+	mi_transform.origin = pos_spawn_original
+	linear_velocity = vel_spawn_original
+	state.set_transform(mi_transform)
+	esta_en_sector = true

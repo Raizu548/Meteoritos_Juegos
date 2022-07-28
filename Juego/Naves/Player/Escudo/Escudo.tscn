@@ -113,7 +113,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/path = NodePath("EscudoActivadoSFX:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -321,8 +321,9 @@ anims/activado = SubResource( 3 )
 anims/activando = SubResource( 4 )
 anims/default = SubResource( 5 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="EscudoActivadoSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+bus = "SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

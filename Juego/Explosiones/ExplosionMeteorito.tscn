@@ -895,6 +895,7 @@ anims/destruirse = SubResource( 3 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
+bus = "SFX"
 
 [node name="SpriteDiminuto1" type="Sprite" parent="."]
 visible = false
