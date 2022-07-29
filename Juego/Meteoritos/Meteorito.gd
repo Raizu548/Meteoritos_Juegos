@@ -12,6 +12,7 @@ onready var animacion_meteorito: AnimationPlayer = $AnimationPlayer
 ## Atributos
 var hitpoints: float
 var esta_en_sector: bool = true setget set_esta_en_sector
+var esta_destruido = false
 var pos_spawn_original: Vector2
 var vel_spawn_original: Vector2
 
@@ -43,7 +44,8 @@ func set_esta_en_sector(valor: bool) -> void:
 # Metodos personalizados
 func recibir_danio(danio: float) -> void:
 	hitpoints -= danio
-	if hitpoints <= 0:
+	if hitpoints <= 0 and not esta_destruido:
+		esta_destruido = true
 		destruirse()
 	
 	animacion_meteorito.play("impacto")
