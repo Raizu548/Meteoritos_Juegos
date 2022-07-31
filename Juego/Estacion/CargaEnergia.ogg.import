@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/CargaEnergia.ogg-20691c000a9e5b8414f57492b1804777.oggstr"
+
+[deps]
+
+source_file="res://Juego/Estacion/CargaEnergia.ogg"
+dest_files=[ "res://.import/CargaEnergia.ogg-20691c000a9e5b8414f57492b1804777.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

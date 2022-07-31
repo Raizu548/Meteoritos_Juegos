@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Naves/Player/MAterialFisico.tres" type="PhysicsMaterial" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Juego/Niveles/Fondos/Fondo_purpura.png" type="Texture" id=9]
 [ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Juego/Niveles/CamaraJuego.gd" type="Script" id=11]
+[ext_resource path="res://Juego/Estacion/EstacionRecarga.tscn" type="PackedScene" id=12]
 
 [node name="NivelTest" type="Node2D"]
 script = ExtResource( 3 )
@@ -40,7 +41,7 @@ __meta__ = {
 [node name="TriggersLluviaMeteoritos" type="Node" parent="."]
 
 [node name="SectorDePeligro" parent="TriggersLluviaMeteoritos" instance=ExtResource( 10 )]
-position = Vector2( 866, 221 )
+position = Vector2( 1876, 713 )
 tipo_peligro = "Meteorito"
 numero_peligros = 3
 
@@ -50,5 +51,8 @@ script = ExtResource( 11 )
 [node name="TweenZoom" type="Tween" parent="CameraNivel"]
 
 [node name="TweenCamara" type="Tween" parent="."]
+
+[node name="EstacionRecarga" parent="." instance=ExtResource( 12 )]
+position = Vector2( 873, 986 )
 
 [connection signal="tween_completed" from="TweenCamara" to="." method="_on_TweenCamara_tween_completed"]

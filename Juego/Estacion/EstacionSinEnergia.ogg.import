@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/EstacionSinEnergia.ogg-74736b2a4b5fb5e93b8740ac3fdbd059.oggstr"
+
+[deps]
+
+source_file="res://Juego/Estacion/EstacionSinEnergia.ogg"
+dest_files=[ "res://.import/EstacionSinEnergia.ogg-74736b2a4b5fb5e93b8740ac3fdbd059.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
