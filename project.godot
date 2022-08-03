@@ -135,6 +135,7 @@ config/icon="res://player_orange_logo.png"
 [autoload]
 
 Eventos="*res://Juego/Autoloads/Eventos.gd"
+DatosJuego="*res://Juego/Autoloads/DatosJuego.gd"
 
 [debug]
 
