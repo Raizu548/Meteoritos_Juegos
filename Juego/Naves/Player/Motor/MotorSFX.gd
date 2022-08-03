@@ -3,7 +3,7 @@ extends AudioStreamPlayer2D
 
 ## Variable exportables
 export var tiempo_transicion: float = 0.6
-export var volumen_apagado: float = 30.0
+export var volumen_apagado: float = -8
 
 # Variable onready
 onready var tween_sonido: Tween = $Tween
