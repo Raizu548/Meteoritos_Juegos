@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Naves/Enemigos/EnemigoInterceptor.gd"
 }, {
+"base": "EnemigoBase",
+"class": "EnemigoOrbital",
+"language": "GDScript",
+"path": "res://Juego/Naves/Enemigos/EnemigoOrbital.gd"
+}, {
 "base": "Area2D",
 "class": "Escudo",
 "language": "GDScript",
@@ -116,6 +121,7 @@ _global_script_class_icons={
 "Canion": "",
 "EnemigoBase": "",
 "EnemigoInterceptor": "",
+"EnemigoOrbital": "",
 "Escudo": "",
 "EstacionRecarga": "",
 "Estela": "",

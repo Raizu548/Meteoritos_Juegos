@@ -26,6 +26,7 @@ can_sleep = false
 linear_damp = 1.5
 angular_damp = 4.5
 script = ExtResource( 10 )
+hitspoint = 25.0
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 1, 1, 1, 0.313726 )
