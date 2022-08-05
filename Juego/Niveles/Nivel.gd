@@ -36,6 +36,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("spawn_meteorito",self,"_on_spawn_meteoritos")
 	Eventos.connect("meteorito_destruido",self,"_on_explosion_meteorito")
 	Eventos.connect("nave_en_sector_peligro",self,"_on_nave_en_sector_peligro")
+	Eventos.connect("base_destruida",self,"_on_base_destruida")
 
 
 func crear_contenedores() -> void:
@@ -105,25 +106,41 @@ func crear_posicion_aleatoria(rango_horizontal: float, rango_vertical: float) ->
 	
 	return Vector2(rand_x, rand_y)
 
+
 ## Conexion selañes externas
 func _on_disparo(proyectil: Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
+
 
 func _on_nave_destruida(posicion: Vector2, num_explosiones: int, nave: Player) -> void:
 	if nave is Player:
 		transicion_camara(posicion, posicion + crear_posicion_aleatoria(-200.0, 200.0),
 						camara_nivel, tiempo_transicion_camara)
 	
-	for _i in range(num_explosiones):
+	crear_explosion(posicion,1,num_explosiones, 0.6, Vector2(100.0, 50.0))
+
+
+func _on_base_destruida(pos_partes: Array) -> void:
+	for posicion in pos_partes:
+		crear_explosion(posicion,rand_range(0.5,1.5))
+		yield(get_tree().create_timer(0.5),"timeout")
+
+
+func crear_explosion(posicion: Vector2,tamanio: float = 1.0, numero: int = 1, intervalo: float = 0.0, 
+					rangos_aleatorios: Vector2 = Vector2(0.0, 0.0)) -> void:
+	for _i in range(numero):
 		var new_explosion: Node2D = explosion.instance()
-		new_explosion.global_position = posicion + crear_posicion_aleatoria(100.0, 50.0)
+		new_explosion.global_position = posicion + crear_posicion_aleatoria(rangos_aleatorios.x, rangos_aleatorios.y)
+		new_explosion.scale *= tamanio
 		add_child(new_explosion)
-		yield(get_tree().create_timer(0.6),"timeout")
+		yield(get_tree().create_timer(intervalo),"timeout")
+
 
 func _on_spawn_meteoritos(pos_spawn: Vector2, dir_meteorito: Vector2, tamanio: float) -> void:
 	var new_meteorito: Meteorito = meteorito.instance()
 	new_meteorito.crear(pos_spawn, dir_meteorito, tamanio)
 	contenedor_meteoritos.add_child(new_meteorito)
+
 
 func _on_explosion_meteorito(pos: Vector2) -> void:
 	descontar_meteorito()
