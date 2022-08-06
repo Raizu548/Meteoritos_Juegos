@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Juego/Naves/Player/Escudo/escudo_activado.ogg" type="AudioStream" id=1]
-[ext_resource path="res://TemporalAssets/spaceshooter/PNG/Effects/shield3.png" type="Texture" id=2]
-[ext_resource path="res://TemporalAssets/spaceshooter/PNG/Effects/shield1.png" type="Texture" id=3]
-[ext_resource path="res://TemporalAssets/spaceshooter/PNG/Effects/shield2.png" type="Texture" id=4]
+[ext_resource path="res://Juego/Naves/Player/Escudo/escudo2.png" type="Texture" id=2]
+[ext_resource path="res://Juego/Naves/Player/Escudo/escudo3.png" type="Texture" id=3]
+[ext_resource path="res://Juego/Naves/Player/Escudo/escudo1.png" type="Texture" id=4]
 [ext_resource path="res://Juego/Naves/Player/Escudo/Escudo.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -301,18 +301,18 @@ shape = SubResource( 1 )
 [node name="SpriteCompleto" type="Sprite" parent="."]
 modulate = Color( 0.13, 0.91, 2, 1 )
 rotation = 1.5708
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="SpriteAbriendo1" type="Sprite" parent="."]
 visible = false
 rotation = 1.5708
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="SpriteAbriendo2" type="Sprite" parent="."]
 visible = false
 modulate = Color( 0.592157, 0.941176, 0.968627, 1 )
 rotation = 1.5708
-texture = ExtResource( 4 )
+texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "default"

@@ -8,6 +8,7 @@ export var meteorito: PackedScene = null
 export var explosion_meteorito: PackedScene = null
 export var sector_meteoritos: PackedScene = null
 export var enemigo_interceptor: PackedScene = null
+export var rele_masa: PackedScene = null
 export var tiempo_transicion_camara: float = 1.0
 
 ## Atributos Onready
@@ -21,11 +22,13 @@ onready var camara_jugador: Camera2D = $Player/CamaraPlayer
 ## Atributos
 var cantidad_meteoritos: int
 var player: Player = null
+var numero_base_enemigas: int = 0
 
 ## Metodos
 func _ready() -> void:
 	conectar_seniales()
 	crear_contenedores()
+	numero_base_enemigas = contabilizar_bases_enemigas()
 	player = DatosJuego.get_player_actual()
 
 
@@ -55,6 +58,9 @@ func crear_contenedores() -> void:
 	add_child(contenedor_enemigos)
 
 
+func contabilizar_bases_enemigas() -> int:
+	return $ContenedorBasesEnemigas.get_child_count()
+
 func crear_sector_meteoritos(centro_camara: Vector2, numero_peligro: int) -> void:
 	cantidad_meteoritos = numero_peligro
 	var new_sector_meteoritos: SectorMeteoritos = sector_meteoritos.instance()
@@ -74,6 +80,11 @@ func crear_sector_enemigos(num_enemigos: int) -> void:
 		new_interceptor.global_position = player.global_position + spawn_pos
 		contenedor_enemigos.add_child(new_interceptor)
 
+
+func crear_rele() -> void:
+	var new_rele_masa: ReleMasa = rele_masa.instance()
+	new_rele_masa.global_position = player.global_position + ajustar_posicion_rele(1000.0, 800.0)
+	add_child(new_rele_masa)
 
 func transicion_camara(desde: Vector2, hasta: Vector2, camara_actual: Camera2D,
 					tiempo_transicion: float) -> void:
@@ -104,8 +115,24 @@ func crear_posicion_aleatoria(rango_horizontal: float, rango_vertical: float) ->
 	randomize()
 	var rand_x = rand_range(-rango_horizontal, rango_horizontal)
 	var rand_y = rand_range(-rango_vertical, rango_vertical)
+	print("X: ", rand_x, " - Y: ", rand_y)
 	
 	return Vector2(rand_x, rand_y)
+
+func ajustar_posicion_rele(rango_horizontal: float, rango_vertical: float) -> Vector2:
+	var posicion: Vector2 = crear_posicion_aleatoria(rango_horizontal,rango_vertical)
+	if posicion.x < 300 and posicion.x >= 0:
+		posicion.x += 300;
+	elif posicion.x > -300 and posicion.x < 0:
+		posicion.x -= 300
+	
+	if posicion.y < 300 and posicion.y >= 0:
+		posicion.y += 300;
+	elif posicion.y > -300 and posicion.y < 0:
+		posicion.y -= 300
+		
+	print("Rele X: ", posicion.x, "Y: ", posicion.y )
+	return posicion
 
 
 ## Conexion selañes externas
@@ -125,6 +152,10 @@ func _on_base_destruida(_base, pos_partes: Array) -> void:
 	for posicion in pos_partes:
 		crear_explosion(posicion,rand_range(0.5,1.5))
 		yield(get_tree().create_timer(0.5),"timeout")
+	
+	numero_base_enemigas -= 1
+	if numero_base_enemigas == 0:
+		crear_rele()
 
 
 func crear_explosion(posicion: Vector2,tamanio: float = 1.0, numero: int = 1, intervalo: float = 0.0, 
