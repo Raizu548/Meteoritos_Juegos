@@ -113,7 +113,7 @@ func _on_disparo(proyectil: Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
 
 
-func _on_nave_destruida(posicion: Vector2, num_explosiones: int, nave: Player) -> void:
+func _on_nave_destruida(nave: Player, posicion: Vector2, num_explosiones: int) -> void:
 	if nave is Player:
 		transicion_camara(posicion, posicion + crear_posicion_aleatoria(-200.0, 200.0),
 						camara_nivel, tiempo_transicion_camara)
