@@ -17,14 +17,13 @@ func _physics_process(_delta: float) -> void:
 ## Metodos personalizados
 func rotar_hacia_player() -> void:
 	if player_objetivo:
-		print("entro")
 		dir_player = player_objetivo.global_position - global_position
 		rotation = dir_player.angle()
 
 func _on_nave_destruida(nave: NaveBase, _posicion, _explosion) -> void:
 	if nave is Player:
 		player_objetivo = null
-		print(player_objetivo)
+		DatosJuego.set_player_actual(null)
 
 
 ## Señales internas
