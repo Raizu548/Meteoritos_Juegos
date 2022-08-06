@@ -37,6 +37,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("meteorito_destruido",self,"_on_explosion_meteorito")
 	Eventos.connect("nave_en_sector_peligro",self,"_on_nave_en_sector_peligro")
 	Eventos.connect("base_destruida",self,"_on_base_destruida")
+	Eventos.connect("spawn_orbital",self,"_on_spawn_orbital")
 
 
 func crear_contenedores() -> void:
@@ -112,7 +113,7 @@ func _on_disparo(proyectil: Proyectil) -> void:
 	contenedor_proyectiles.add_child(proyectil)
 
 
-func _on_nave_destruida(posicion: Vector2, num_explosiones: int, nave: Player) -> void:
+func _on_nave_destruida(nave: Player, posicion: Vector2, num_explosiones: int) -> void:
 	if nave is Player:
 		transicion_camara(posicion, posicion + crear_posicion_aleatoria(-200.0, 200.0),
 						camara_nivel, tiempo_transicion_camara)
@@ -120,7 +121,7 @@ func _on_nave_destruida(posicion: Vector2, num_explosiones: int, nave: Player) -
 	crear_explosion(posicion,1,num_explosiones, 0.6, Vector2(100.0, 50.0))
 
 
-func _on_base_destruida(pos_partes: Array) -> void:
+func _on_base_destruida(_base, pos_partes: Array) -> void:
 	for posicion in pos_partes:
 		crear_explosion(posicion,rand_range(0.5,1.5))
 		yield(get_tree().create_timer(0.5),"timeout")
@@ -159,3 +160,6 @@ func _on_nave_en_sector_peligro(centro_cam: Vector2, tipo_peligro: String, num_p
 func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
 	if object.name == "CameraPlayer":
 		object.global_position = $Player.global_position
+
+func _on_spawn_orbital(enemigo: EnemigoOrbital) -> void:
+	contenedor_enemigos.add_child(enemigo)
