@@ -26,6 +26,7 @@ var numero_base_enemigas: int = 0
 
 ## Metodos
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	conectar_seniales()
 	crear_contenedores()
 	numero_base_enemigas = contabilizar_bases_enemigas()
@@ -83,7 +84,14 @@ func crear_sector_enemigos(num_enemigos: int) -> void:
 
 func crear_rele() -> void:
 	var new_rele_masa: ReleMasa = rele_masa.instance()
-	new_rele_masa.global_position = player.global_position + ajustar_posicion_rele(1000.0, 800.0)
+	var pos_aleatoria: Vector2 = crear_posicion_aleatoria(400.0, 200.0)
+	var margen: Vector2 = Vector2(600.0, 600.0)
+	if pos_aleatoria.x < 0:
+		margen.x *= -1
+	if pos_aleatoria.y < 0:
+		margen.y *= -1
+		
+	new_rele_masa.global_position = player.global_position + (margen + pos_aleatoria)
 	add_child(new_rele_masa)
 
 func transicion_camara(desde: Vector2, hasta: Vector2, camara_actual: Camera2D,
@@ -115,24 +123,8 @@ func crear_posicion_aleatoria(rango_horizontal: float, rango_vertical: float) ->
 	randomize()
 	var rand_x = rand_range(-rango_horizontal, rango_horizontal)
 	var rand_y = rand_range(-rango_vertical, rango_vertical)
-	print("X: ", rand_x, " - Y: ", rand_y)
 	
 	return Vector2(rand_x, rand_y)
-
-func ajustar_posicion_rele(rango_horizontal: float, rango_vertical: float) -> Vector2:
-	var posicion: Vector2 = crear_posicion_aleatoria(rango_horizontal,rango_vertical)
-	if posicion.x < 300 and posicion.x >= 0:
-		posicion.x += 300;
-	elif posicion.x > -300 and posicion.x < 0:
-		posicion.x -= 300
-	
-	if posicion.y < 300 and posicion.y >= 0:
-		posicion.y += 300;
-	elif posicion.y > -300 and posicion.y < 0:
-		posicion.y -= 300
-		
-	print("Rele X: ", posicion.x, "Y: ", posicion.y )
-	return posicion
 
 
 ## Conexion selañes externas
