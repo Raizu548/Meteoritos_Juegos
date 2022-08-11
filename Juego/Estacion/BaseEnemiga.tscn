@@ -111,7 +111,7 @@ tracks/1/keys = {
 "values": [ 0.0, 360.0 ]
 }
 
-[node name="BaseEnemiga" type="Node2D"]
+[node name="BaseEnemiga" type="Node2D" groups=["minimapa"]]
 rotation = -6.28319
 z_index = 10
 z_as_relative = false

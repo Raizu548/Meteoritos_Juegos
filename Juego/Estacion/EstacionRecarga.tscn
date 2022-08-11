@@ -153,7 +153,7 @@ tracks/3/keys = {
 "values": [ 0.0, 0.0 ]
 }
 
-[node name="EstacionRecarga" type="Node2D"]
+[node name="EstacionRecarga" type="Node2D" groups=["minimapa"]]
 z_index = 10
 z_as_relative = false
 script = ExtResource( 3 )

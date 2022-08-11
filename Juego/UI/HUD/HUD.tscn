@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://player_orange_logo.png" type="Texture" id=1]
 [ext_resource path="res://Juego/UI/HUD/HUD.gd" type="Script" id=2]
 [ext_resource path="res://Juego/UI/HUD/ContenedorInformacion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Juego/UI/HUD/ContenedorInformacionEnergia.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/UI/MiniMapa/MiniMapa.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -106,6 +107,8 @@ margin_bottom = -80.0
 
 [node name="Label" parent="InfoEscudos" index="1"]
 text = "Energia Escudos"
+
+[node name="MiniMapa" parent="." groups=["contenedor_info"] instance=ExtResource( 5 )]
 
 [editable path="InfoZonaCarga"]
 [editable path="InfoMeteoritos"]

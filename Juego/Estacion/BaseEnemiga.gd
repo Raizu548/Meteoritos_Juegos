@@ -56,6 +56,7 @@ func destruir() -> void:
 	]
 	
 	Eventos.emit_signal("base_destruida",self, posiciones_partes)
+	Eventos.emit_signal("minimapa_objeto_destruido", self)
 	queue_free()
 
 func spawnear_orbital() -> void:
