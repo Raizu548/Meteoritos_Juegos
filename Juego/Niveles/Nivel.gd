@@ -3,6 +3,8 @@ class_name Nivel
 extends Node2D
 
 ## Var export
+export var musica_nivel: AudioStream = null
+export var musica_combate: AudioStream = null
 export var explosion: PackedScene = null
 export var meteorito: PackedScene = null
 export var explosion_meteorito: PackedScene = null
@@ -29,6 +31,8 @@ var numero_base_enemigas: int = 0
 ## Metodos
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	MusicaJuego.set_streams(musica_nivel, musica_combate)
+	MusicaJuego.play_musica_nivel()
 	conectar_seniales()
 	crear_contenedores()
 	numero_base_enemigas = contabilizar_bases_enemigas()
@@ -68,6 +72,7 @@ func contabilizar_bases_enemigas() -> int:
 	return $ContenedorBasesEnemigas.get_child_count()
 
 func crear_sector_meteoritos(centro_camara: Vector2, numero_peligro: int) -> void:
+	MusicaJuego.transicion_musicas()
 	cantidad_meteoritos = numero_peligro
 	var new_sector_meteoritos: SectorMeteoritos = sector_meteoritos.instance()
 	new_sector_meteoritos.crear(centro_camara,numero_peligro)
@@ -110,7 +115,9 @@ func transicion_camara(desde: Vector2, hasta: Vector2, camara_actual: Camera2D,
 func descontar_meteorito() -> void:
 	cantidad_meteoritos -= 1
 	Eventos.emit_signal("cambio_numero_meteoritos", cantidad_meteoritos)
+	
 	if cantidad_meteoritos <= 0:
+		MusicaJuego.transicion_musicas()
 		contenedor_sector_meteoritos.get_child(0).queue_free()
 		camara_jugador.set_puede_hacer_zoom(true)
 		var zoom_actual = camara_jugador.zoom
