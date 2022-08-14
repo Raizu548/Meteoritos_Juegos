@@ -3,6 +3,7 @@ class_name Nivel
 extends Node2D
 
 ## Var export
+export(String, FILE, "*.tscn") var prox_nivel = ""
 export var musica_nivel: AudioStream = null
 export var musica_combate: AudioStream = null
 export var explosion: PackedScene = null
@@ -51,6 +52,7 @@ func conectar_seniales() -> void:
 	Eventos.connect("nave_en_sector_peligro",self,"_on_nave_en_sector_peligro")
 	Eventos.connect("base_destruida",self,"_on_base_destruida")
 	Eventos.connect("spawn_orbital",self,"_on_spawn_orbital")
+	Eventos.connect("nivel_completado", self, "_on_nivel_completado")
 	
 
 func crear_contenedores() -> void:
@@ -196,6 +198,11 @@ func _on_nave_en_sector_peligro(centro_cam: Vector2, tipo_peligro: String, num_p
 		Eventos.emit_signal("cambio_numero_meteoritos",num_peligros)
 	elif tipo_peligro == "Enemigo":
 		crear_sector_enemigos(num_peligros)
+
+func _on_nivel_completado() -> void:
+	Eventos.emit_signal("nivel_terminado")
+	yield(get_tree().create_timer(1.0),"timeout")
+	get_tree().change_scene(prox_nivel)
 
 # Señales internas
 func _on_TweenCamara_tween_completed(object: Object, key: NodePath) -> void:
