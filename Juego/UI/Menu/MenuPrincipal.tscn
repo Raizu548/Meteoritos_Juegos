@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Juego/UI/Fuentes/Fonts/future.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Juego/UI/Menu/MenuPrincipal.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 35
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
@@ -16,6 +22,8 @@ nivel_inicial = "res://Juego/Niveles/Nivel1.tscn"
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -7.0
+margin_bottom = -7.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="BotonJugar" type="Button" parent="."]
@@ -30,4 +38,18 @@ margin_bottom = 64.5
 custom_fonts/font = SubResource( 1 )
 text = "Jugar"
 
+[node name="ButonSalir" type="Button" parent="."]
+anchor_left = 0.432292
+anchor_top = 0.634259
+anchor_right = 0.561458
+anchor_bottom = 0.721296
+margin_left = 10.0
+margin_right = 10.0
+custom_fonts/font = SubResource( 2 )
+text = "Salir"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [connection signal="pressed" from="BotonJugar" to="." method="_on_BotonJugar_pressed"]
+[connection signal="pressed" from="ButonSalir" to="." method="_on_ButonSalir_pressed"]
