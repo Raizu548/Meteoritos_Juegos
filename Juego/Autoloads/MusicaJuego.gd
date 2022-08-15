@@ -22,8 +22,6 @@ func get_lista_musicas() -> Dictionary:
 
 ## Metodos Personalizados
 func set_streams(stream_music: AudioStream, stream_combate: AudioStream) -> void:
-	print("Entro aqui")
-	print("Musica de nivel: ", musica_nivel)
 	musica_nivel.stream = stream_music
 	musica_combate.stream = stream_combate
 

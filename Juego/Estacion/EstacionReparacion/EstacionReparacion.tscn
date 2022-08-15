@@ -1,0 +1,262 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Juego/Estacion/EstacionReparacion/cables.png" type="Texture" id=1]
+[ext_resource path="res://Juego/Estacion/EstacionReparacion/estructuraPequeña.png" type="Texture" id=2]
+[ext_resource path="res://Juego/Estacion/EstacionReparacion/reparador.png" type="Texture" id=3]
+[ext_resource path="res://Juego/Estacion/EstacionReparacion/estructuraGrande.png" type="Texture" id=4]
+[ext_resource path="res://Juego/Estacion/EstacionReparacion/estructuraMediana.png" type="Texture" id=5]
+[ext_resource path="res://Juego/Proyectiles/Laser/glowing_circle.png" type="Texture" id=6]
+[ext_resource path="res://Juego/Estacion/EstacionReparacion/EstacionReparacionParticula.tres" type="Material" id=7]
+[ext_resource path="res://Juego/Estacion/EstacionReparacion/EstacionReparacion.gd" type="Script" id=8]
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+gravity = Vector3( -300, 0, 0 )
+initial_velocity = 40.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_random = 0.5
+color = Color( 0.458824, 1, 0.435294, 1 )
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/ReparadorD:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 38, 56 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "activado"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/ReparadorI/Particles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/ReparadorD/Particles2D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/ReparadorI:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -39, 118 ), Vector2( -39, 56 ), Vector2( -39, 118 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/ReparadorD:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 38, 118 ), Vector2( 38, 56 ), Vector2( 38, 118 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/ReparadorI/Particles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/ReparadorD/Particles2D2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/ReparadorI:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -39, 118 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/ReparadorD:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 38, 118 ) ]
+}
+
+[node name="EstacionReparacion" type="Node2D" groups=["minimapa"]]
+script = ExtResource( 8 )
+
+[node name="Sprites" type="Node2D" parent="."]
+scale = Vector2( 3, 3 )
+
+[node name="CablePequeñoD" type="Sprite" parent="Sprites"]
+position = Vector2( 45, 0 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
+
+[node name="CablePequeñoI" type="Sprite" parent="Sprites"]
+position = Vector2( -46, 0 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
+flip_h = true
+
+[node name="CableMedianoD" type="Sprite" parent="Sprites"]
+position = Vector2( 52, -5 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
+
+[node name="CableMedianoI" type="Sprite" parent="Sprites"]
+position = Vector2( -52, -5 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
+flip_h = true
+
+[node name="ReparadorI" type="Sprite" parent="Sprites"]
+position = Vector2( -39, 118 )
+rotation = -3.14159
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="Particles2D" type="Particles2D" parent="Sprites/ReparadorI"]
+position = Vector2( -23.3334, -3.33325 )
+rotation = -3.14159
+scale = Vector2( 1.66667, 1.66667 )
+emitting = false
+amount = 20
+speed_scale = 0.3
+local_coords = false
+process_material = ExtResource( 7 )
+texture = ExtResource( 6 )
+
+[node name="ReparadorD" type="Sprite" parent="Sprites"]
+position = Vector2( 38, 56 )
+rotation = -6.28319
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="Particles2D2" type="Particles2D" parent="Sprites/ReparadorD"]
+position = Vector2( -3.33337, 3.33319 )
+rotation = 2.38419e-07
+scale = Vector2( 1.66667, 1.66667 )
+emitting = false
+amount = 20
+speed_scale = 0.3
+local_coords = false
+process_material = SubResource( 4 )
+texture = ExtResource( 6 )
+
+[node name="EstructuraCentral" type="Sprite" parent="Sprites"]
+texture = ExtResource( 4 )
+
+[node name="EstrucuraPequeñaI" type="Sprite" parent="Sprites"]
+position = Vector2( -63, 22 )
+texture = ExtResource( 2 )
+
+[node name="EstructuraPequeñaD" type="Sprite" parent="Sprites"]
+position = Vector2( 63, 22 )
+texture = ExtResource( 2 )
+
+[node name="BrazoI" type="Sprite" parent="Sprites"]
+position = Vector2( -63, 85 )
+texture = ExtResource( 5 )
+
+[node name="BrazoD" type="Sprite" parent="Sprites"]
+position = Vector2( 62, 84 )
+texture = ExtResource( 5 )
+
+[node name="AreaColision" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionCentro" type="CollisionShape2D" parent="AreaColision"]
+scale = Vector2( 11.6602, 11.5244 )
+shape = SubResource( 1 )
+
+[node name="CollisionBrazoI" type="CollisionShape2D" parent="AreaColision"]
+position = Vector2( -189, 193 )
+scale = Vector2( 5.52, 17.92 )
+shape = SubResource( 2 )
+
+[node name="CollisionBrazoD" type="CollisionShape2D" parent="AreaColision"]
+position = Vector2( 187, 193 )
+scale = Vector2( 5.52, 17.92 )
+shape = SubResource( 2 )
+
+[node name="AreaReparacion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaReparacion"]
+modulate = Color( 0.45098, 0.839216, 0.521569, 1 )
+position = Vector2( 0, 253 )
+scale = Vector2( 11.28, 11.56 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/activado = SubResource( 6 )
+anims/default = SubResource( 7 )
+
+[connection signal="body_entered" from="AreaColision" to="." method="_on_AreaColision_body_entered"]
+[connection signal="body_entered" from="AreaReparacion" to="." method="_on_AreaReparacion_body_entered"]
+[connection signal="body_exited" from="AreaReparacion" to="." method="_on_AreaReparacion_body_exited"]

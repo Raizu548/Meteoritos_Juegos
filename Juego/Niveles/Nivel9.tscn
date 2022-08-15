@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Juego/Niveles/NivelBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Juego/Estacion/EstacionRecarga.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Juego/Peligros/SectorDePeligro.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Juego/Estacion/BaseEnemiga.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Juego/Estacion/EstacionReparacion/EstacionReparacion.tscn" type="PackedScene" id=5]
 
 [node name="Nivel9" instance=ExtResource( 1 )]
 prox_nivel = "res://Juego/Niveles/Nivel10.tscn"
@@ -84,6 +85,14 @@ position = Vector2( 5600, 102 )
 
 [node name="EstacionRecarga4" parent="ContenedorEstacion" index="3" instance=ExtResource( 2 )]
 position = Vector2( 1397, 4039 )
+
+[node name="EstacionReparacion" parent="ContenedorEstacion" index="4" instance=ExtResource( 5 )]
+position = Vector2( -2334, -1708 )
+rotation = -0.754966
+
+[node name="EstacionReparacion2" parent="ContenedorEstacion" index="5" instance=ExtResource( 5 )]
+position = Vector2( 5834, 1167 )
+rotation = 1.76057
 
 [node name="SectorDePeligro" parent="TriggerInterceptores" index="0" instance=ExtResource( 3 )]
 position = Vector2( 1028, 1162 )
