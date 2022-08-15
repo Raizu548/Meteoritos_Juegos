@@ -146,7 +146,7 @@ tracks/3/keys = {
 "values": [ Vector2( 38, 118 ) ]
 }
 
-[node name="EstacionReparacion" type="Node2D"]
+[node name="EstacionReparacion" type="Node2D" groups=["minimapa"]]
 script = ExtResource( 8 )
 
 [node name="Sprites" type="Node2D" parent="."]
@@ -228,6 +228,7 @@ position = Vector2( 62, 84 )
 texture = ExtResource( 5 )
 
 [node name="AreaColision" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionCentro" type="CollisionShape2D" parent="AreaColision"]
 scale = Vector2( 11.6602, 11.5244 )
@@ -256,5 +257,6 @@ anims/RESET = SubResource( 5 )
 anims/activado = SubResource( 6 )
 anims/default = SubResource( 7 )
 
+[connection signal="body_entered" from="AreaColision" to="." method="_on_AreaColision_body_entered"]
 [connection signal="body_entered" from="AreaReparacion" to="." method="_on_AreaReparacion_body_entered"]
 [connection signal="body_exited" from="AreaReparacion" to="." method="_on_AreaReparacion_body_exited"]

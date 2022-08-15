@@ -10,4 +10,4 @@
 position = Vector2( 1059, -122 )
 
 [node name="BaseEnemiga" parent="ContenedorBasesEnemigas" index="0" instance=ExtResource( 3 )]
-position = Vector2( 1216, 1971 )
+position = Vector2( 1023, 3140 )

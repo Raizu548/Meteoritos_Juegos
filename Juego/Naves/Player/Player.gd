@@ -5,10 +5,13 @@ extends NaveBase
 export var potencia_motor: int = 30
 export var potencia_rotacion: int = 200
 export var estela_maxima: int = 150
+export var regeneracion: float = 0.1
 
 ## Atributos
 var empuje: Vector2 = Vector2.ZERO
 var dir_rotacion: int = 0
+var en_zona_reparacion: bool = false setget set_en_zona_reparacion
+var vida_max: float
 
 ## Atributos onready
 onready var escudo: Escudo = $Escudo
@@ -23,10 +26,13 @@ func get_laser() -> RayoLaser:
 func get_escudo() -> Escudo:
 	return escudo
 
+func set_en_zona_reparacion(valor: bool) -> void:
+	en_zona_reparacion = valor
 
 ## Metodos
 func _ready() -> void:
 	DatosJuego.set_player_actual(self)
+	vida_max = hitspoint
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not esta_input_activado():
@@ -58,6 +64,9 @@ func _integrate_forces(_state: Physics2DDirectBodyState) -> void:
 
 func _process(_delta: float) -> void:
 	player_input()
+	if en_zona_reparacion:
+		recuperar_vida()
+
 
 ## Metodos personalizados
 func player_input() -> void:
@@ -96,3 +105,8 @@ func desactivar_controles() -> void:
 	empuje = Vector2.ZERO
 	motor_sfx.sonido_off()
 	laser.set_is_casting(false)
+
+func recuperar_vida() -> void:
+	hitspoint += regeneracion
+	clamp(hitspoint,0,vida_max)
+	barra_salud.controlar_barra(hitspoint, true)
