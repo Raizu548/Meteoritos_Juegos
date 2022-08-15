@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Juego/Estacion/EstacionRecarga.gd"
 }, {
+"base": "Node2D",
+"class": "EstacionReparacion",
+"language": "GDScript",
+"path": "res://Juego/Estacion/EstacionReparacion/EstacionReparacion.gd"
+}, {
 "base": "Line2D",
 "class": "Estela",
 "language": "GDScript",
@@ -147,6 +152,7 @@ _global_script_class_icons={
 "EnemigoOrbital": "",
 "Escudo": "",
 "EstacionRecarga": "",
+"EstacionReparacion": "",
 "Estela": "",
 "ExplosionMeteorito": "",
 "Meteorito": "",
