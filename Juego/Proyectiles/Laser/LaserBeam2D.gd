@@ -88,16 +88,14 @@ func cast_beam(delta: float) -> void:
 
 
 func appear() -> void:
-	if tween.is_active():
-		tween.stop_all()
-	tween.interpolate_property(fill, "width", 0, line_width, growth_time * 2)
-	tween.start()
-
+	modify_visibility(0, line_width)
 
 func disappear() -> void:
-	if tween.is_active():
-		tween.stop_all()
-	tween.interpolate_property(fill, "width", fill.width, 0, growth_time)
+	modify_visibility(fill.width, 0)
+
+
+func modify_visibility(fill_width: float, line_width: float) -> void:
+	tween.interpolate_property(fill, "width", fill_width, line_width, growth_time)
 	tween.start()
 
 func controlar_energia(consumo: float) -> void:
