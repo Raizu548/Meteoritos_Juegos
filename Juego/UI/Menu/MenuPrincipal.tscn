@@ -1,17 +1,47 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Juego/UI/Fuentes/Fonts/future.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Juego/UI/Menu/MenuPrincipal.gd" type="Script" id=2]
+[ext_resource path="res://Juego/Meteoritos/Fuente_Kenney Future.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://TemporalAssets/uipack-space/PNG/metalPanel_redCorner.png" type="Texture" id=4]
+[ext_resource path="res://Juego/Naves/Player/player_orange.png" type="Texture" id=5]
+[ext_resource path="res://Juego/Meteoritos/meteoritoGrande.png" type="Texture" id=6]
+[ext_resource path="res://Juego/Proyectiles/laser_player.png" type="Texture" id=7]
+[ext_resource path="res://Juego/Niveles/Fondos/StarField.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=1]
-size = 40
+size = 35
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.909804, 0.415686, 0.0901961, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [sub_resource type="DynamicFont" id=2]
 size = 35
 outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.909804, 0.415686, 0.0901961, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="DynamicFont" id=6]
+size = 150
+outline_size = 6
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
@@ -22,34 +52,162 @@ nivel_inicial = "res://Juego/Niveles/Nivel1.tscn"
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -7.0
-margin_bottom = -7.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.00392157, 0.0588235, 0.0862745, 1 )
 
-[node name="BotonJugar" type="Button" parent="."]
+[node name="StarField" parent="." instance=ExtResource( 8 )]
+amount = 15
+
+[node name="Sprites" type="Node" parent="."]
+
+[node name="Meteorito" type="Sprite" parent="Sprites"]
+position = Vector2( 1591, 119 )
+rotation = 0.605127
+scale = Vector2( 4, 4 )
+texture = ExtResource( 6 )
+
+[node name="Nave" type="Sprite" parent="Sprites"]
+position = Vector2( 227, 798 )
+rotation = 1.0944
+scale = Vector2( 3, 3 )
+texture = ExtResource( 5 )
+
+[node name="Proyectil" type="Sprite" parent="Sprites"]
+modulate = Color( 2, 1, 1, 1 )
+position = Vector2( 367.331, 638.861 )
+rotation = 1.11226
+scale = Vector2( 3, 4 )
+texture = ExtResource( 7 )
+
+[node name="Proyectil2" type="Sprite" parent="Sprites"]
+modulate = Color( 2, 1, 1, 1 )
+position = Vector2( 440, 774 )
+rotation = 1.07048
+scale = Vector2( 3, 4 )
+texture = ExtResource( 7 )
+
+[node name="Proyectil3" type="Sprite" parent="Sprites"]
+modulate = Color( 2, 1, 1, 1 )
+position = Vector2( 749.331, 457.861 )
+rotation = 1.11226
+scale = Vector2( 3, 4 )
+texture = ExtResource( 7 )
+
+[node name="Proyectil4" type="Sprite" parent="Sprites"]
+modulate = Color( 2, 1, 1, 1 )
+position = Vector2( 822, 593 )
+rotation = 1.07048
+scale = Vector2( 3, 4 )
+texture = ExtResource( 7 )
+
+[node name="Proyectil5" type="Sprite" parent="Sprites"]
+modulate = Color( 2, 1, 1, 1 )
+position = Vector2( 1178.33, 258.861 )
+rotation = 1.11226
+scale = Vector2( 3, 4 )
+texture = ExtResource( 7 )
+
+[node name="Proyectil6" type="Sprite" parent="Sprites"]
+modulate = Color( 2, 1, 1, 1 )
+position = Vector2( 1251, 394 )
+rotation = 1.07048
+scale = Vector2( 3, 4 )
+texture = ExtResource( 7 )
+
+[node name="PanelMenu" type="Panel" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -201.5
-margin_top = -64.5
-margin_right = 201.5
-margin_bottom = 64.5
-custom_fonts/font = SubResource( 1 )
-text = "Jugar"
+margin_left = -188.0
+margin_top = -151.0
+margin_right = 188.0
+margin_bottom = 241.0
 
-[node name="ButonSalir" type="Button" parent="."]
-anchor_left = 0.432292
-anchor_top = 0.634259
-anchor_right = 0.561458
-anchor_bottom = 0.721296
-margin_left = 10.0
-margin_right = 10.0
-custom_fonts/font = SubResource( 2 )
-text = "Salir"
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+patch_margin_left = 37
+patch_margin_top = 50
+patch_margin_right = 54
+patch_margin_bottom = 50
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_lock_": true
 }
 
-[connection signal="pressed" from="BotonJugar" to="." method="_on_BotonJugar_pressed"]
-[connection signal="pressed" from="ButonSalir" to="." method="_on_ButonSalir_pressed"]
+[node name="LabelMenu" type="Label" parent="PanelMenu"]
+margin_left = 15.0
+margin_right = 179.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 3 )
+text = "Menu"
+valign = 1
+
+[node name="BotonJugar" type="Button" parent="PanelMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -136.5
+margin_top = -49.0
+margin_right = 136.5
+margin_bottom = 10.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 4 )
+text = "Jugar"
+
+[node name="BotonContinuar" type="Button" parent="PanelMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -136.5
+margin_top = -118.0
+margin_right = 136.5
+margin_bottom = -59.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 4 )
+disabled = true
+text = "Continuar"
+
+[node name="BotonOpciones" type="Button" parent="PanelMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -136.5
+margin_top = 20.0
+margin_right = 136.5
+margin_bottom = 79.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_styles/normal = SubResource( 4 )
+disabled = true
+text = "Opciones"
+
+[node name="ButonSalir" type="Button" parent="PanelMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -82.5
+margin_top = 107.0
+margin_right = 76.5
+margin_bottom = 153.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 5 )
+text = "Salir"
+
+[node name="Titulo" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 69.0
+margin_bottom = 344.0
+custom_fonts/font = SubResource( 6 )
+text = "Meteoritos"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="PanelMenu/BotonJugar" to="." method="_on_BotonJugar_pressed"]
+[connection signal="pressed" from="PanelMenu/ButonSalir" to="." method="_on_ButonSalir_pressed"]
